@@ -1,0 +1,17 @@
+* {
+    background: #000027;
+    color: seashell;
+}
+
+#sketch-container {
+    display: grid;
+    /* grid-template-columns: repeat(4, 1fr); */
+    grid-auto-rows: minmax(25px, auto);
+}
+
+#sketch-container > div{
+    background: gray;
+    border: 5px solid black;
+    width: 25px;
+    height: 25px;
+}
