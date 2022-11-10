@@ -9,26 +9,62 @@
 </head>
 <body>
     <h1>Etch-a-Sketch</h1>
+    <button type="button" id="btn">Set Grid Size</button>
     <div id="sketch-container">
         
     </div>
 </body>
 
 <script>
-    function createCell() {
+    function createCell(cellWidth) {
         const container = document.querySelector('#sketch-container');
         
         const cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.setAttribute('style', `width: ${cellWidth}px; height: ${cellWidth}px; border: 1px solid black`);
         container.appendChild(cell);
+    }
+
+    function deleteGrid() {
+        const container = document.querySelector('#sketch-container');
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach((cell) => {
+            cell.remove();
+        });
     }
     
     function createSquareGrid(size=16) {
-        for(i=1;i<=size**2;i++) {
-            createCell();
-        }
         const container = document.querySelector('#sketch-container');
+        containerWidth = container.clientWidth;
+        cellWidth = containerWidth / size;
+        console.log(containerWidth);
+        for(i=1;i<=size**2;i++) {
+            createCell(cellWidth);
+        }
         container.setAttribute('style', `grid-template-columns: repeat(${size}, 1fr);`);
+        setMouseOver(); 
     }
+
+    function setMouseOver() {
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach((cell) => {
+            cell.addEventListener('mouseover', () => {
+                // cell.setAttribute('style', 'background: yellow;');
+                cell.style['background-color'] = 'yellow';
+                
+            });
+        });
+
+    }
+    
+    const btn = document.querySelector('#btn');
+    btn.addEventListener('click', () => {
+        let size = prompt("Please enter the desired number of rows/columns");
+        size = Math.max(0,size);
+        size = Math.min(size,100);
+        deleteGrid();
+        createSquareGrid(size);
+    });
 
     createSquareGrid();
 </script>

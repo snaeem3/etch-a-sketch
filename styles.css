@@ -5,13 +5,18 @@
 
 #sketch-container {
     display: grid;
-    /* grid-template-columns: repeat(4, 1fr); */
     grid-auto-rows: minmax(25px, auto);
+    justify-items: center;
+    width: 960px;
 }
 
 #sketch-container > div{
     background: gray;
-    border: 5px solid black;
-    width: 25px;
-    height: 25px;
+    /* border: 1px solid black; */
+    /* width: 25px;
+    height: 25px; */
+}
+
+.cell-over {
+    background: yellow;
 }
