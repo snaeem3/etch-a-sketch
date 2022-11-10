@@ -5,7 +5,7 @@
 
 #sketch-container {
     display: grid;
-    grid-auto-rows: minmax(25px, auto);
+    /* grid-auto-rows: minmax(25px, auto); */
     justify-items: center;
     width: 960px;
 }
