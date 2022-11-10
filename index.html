@@ -37,7 +37,7 @@
         const container = document.querySelector('#sketch-container');
         containerWidth = container.clientWidth;
         cellWidth = containerWidth / size;
-        console.log(containerWidth);
+        // console.log(containerWidth);
         for(i=1;i<=size**2;i++) {
             createCell(cellWidth);
         }
@@ -50,7 +50,7 @@
         cells.forEach((cell) => {
             cell.addEventListener('mouseover', () => {
                 // cell.setAttribute('style', 'background: yellow;');
-                cell.style['background-color'] = 'yellow';
+                cell.style['background-color'] = randomRGB();
                 
             });
         });
@@ -65,6 +65,15 @@
         deleteGrid();
         createSquareGrid(size);
     });
+
+    function randomRGB() {
+        var x = Math.floor(Math.random() * 256);
+        var y = Math.floor(Math.random() * 256);
+        var z = Math.floor(Math.random() * 256);
+        var RGBColor = "rgb(" + x + "," + y + "," + z + ")"; 
+        return RGBColor;
+    }
+
 
     createSquareGrid();
 </script>
