@@ -10,6 +10,10 @@
 <body>
     <h1>Etch-a-Sketch</h1>
     <button type="button" id="btn">Set Grid Size</button>
+    <div class="slidecontainer">
+        <input type="range" min="1" max="100" value="16" class="slider" id="grid-size">
+        <output></output>
+    </div>
     <div id="sketch-container"></div>
     <form name="modeSelect">
         <input type="radio" name="mode" value="standard" checked="checked"><label for="standard">Standard</label>
@@ -74,6 +78,11 @@
         });
 
     }
+
+    const sketchContainer = document.querySelector('#sketch-container');
+    sketchContainer.addEventListener('click', () => {
+        // console.log('sketch container clicked');
+    })
     
     const btn = document.querySelector('#btn');
     btn.addEventListener('click', () => {
@@ -124,13 +133,12 @@
         return `rgb(${newR},${newG},${newB})`;
     }
 
-    // const radios = document.querySelectorAll('input[type=radio]');
-    // radios.forEach((radio) => {
-    //     radio.addEventListener('change', () => {
-    //         console.log(radio.value);
-    //         // setMouseOver(radio.value);
-    //     });
-    // });
+    const inputSize = document.querySelector('input');
+    const outputSize = document.querySelector('output');
+    outputSize.textContent = inputSize.value + ' x ' + inputSize.value;
+    inputSize.addEventListener('input', () => {
+        outputSize.textContent = inputSize.value + ' x ' + inputSize.value;
+    });
 
     createSquareGrid();
 </script>
