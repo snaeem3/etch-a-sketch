@@ -9,18 +9,23 @@
 </head>
 <body>
     <h1>Etch-a-Sketch</h1>
-    <button type="button" id="btn">Set Grid Size</button>
+    <!-- <button type="button" id="btn">Set Grid Size</button> -->
     <div class="slidecontainer">
         <input type="range" min="1" max="100" value="16" class="slider" id="grid-size">
         <output></output>
     </div>
     <div id="sketch-container"></div>
+    <button type="button" id="clearBtn">Clear Grid</button>
     <form name="modeSelect">
         <input type="radio" name="mode" value="standard" checked="checked"><label for="standard">Standard</label>
         <input type="radio" name="mode" value="randomRGB"><label for="randomRGB">Random RGB</label>
         <input type="radio" name="mode" value="grayscale"><label for="grayscale">Grayscale</label>
     </form>
-    <button type="button" id="clearBtn">Clear Grid</button>
+    <label class="toggle">
+        <input class="toggle-checkbox" type="checkbox" checked>
+        <div class="toggle-switch"></div>
+        <span class="toggle-label">Grid Lines</span>
+    </label>
 
 </body>
 
@@ -30,7 +35,7 @@
         
         const cell = document.createElement('div');
         cell.classList.add('cell');
-        cell.setAttribute('style', `width: ${cellWidth}px; height: ${cellWidth}px; border: 0px solid black; background-color: ${backgroundColor};`);
+        cell.setAttribute('style', `width: ${cellWidth}px; height: ${cellWidth}px; outline: 1px solid gray; background-color: ${backgroundColor};`);
         container.appendChild(cell);
     }
 
@@ -84,14 +89,17 @@
         // console.log('sketch container clicked');
     })
     
-    const btn = document.querySelector('#btn');
-    btn.addEventListener('click', () => {
-        let size = prompt("Please enter the desired number of rows/columns");
-        size = Math.max(0,size);
-        size = Math.min(size,100);
-        deleteGrid();
-        createSquareGrid(size);
-    });
+
+    //--------- Create Grid Button -------------
+    //
+    // const btn = document.querySelector('#btn');
+    // btn.addEventListener('click', () => {
+    //     let size = prompt("Please enter the desired number of rows/columns");
+    //     size = Math.max(0,size);
+    //     size = Math.min(size,100);
+    //     deleteGrid();
+    //     createSquareGrid(size);
+    // });
 
     const clearBtn = document.querySelector('#clearBtn');
     clearBtn.addEventListener('click', () => {
@@ -141,6 +149,30 @@
         deleteGrid();
         createSquareGrid(inputSize.value);
     });
+
+    const gridLinesCheckBox = document.querySelector('.toggle-checkbox');
+    gridLinesCheckBox.addEventListener('change', () => {
+        if (gridLinesCheckBox.checked) {
+            setOutlineOn();
+        }
+        else {
+            setOutlineOff();
+        }
+    });
+
+    function setOutlineOn(){
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach((cell) => {
+            cell.style['outline'] = '1px solid gray';
+        });
+    }
+
+    function setOutlineOff(){
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach((cell) => {
+            cell.style['outline'] = '0px';
+        });
+    }
 
     createSquareGrid();
 </script>
