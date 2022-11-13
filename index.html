@@ -138,6 +138,8 @@
     outputSize.textContent = inputSize.value + ' x ' + inputSize.value;
     inputSize.addEventListener('input', () => {
         outputSize.textContent = inputSize.value + ' x ' + inputSize.value;
+        deleteGrid();
+        createSquareGrid(inputSize.value);
     });
 
     createSquareGrid();
