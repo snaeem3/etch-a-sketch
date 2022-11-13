@@ -20,6 +20,7 @@
         <input type="radio" name="mode" value="standard" checked="checked"><label for="standard">Standard</label>
         <input type="radio" name="mode" value="randomRGB"><label for="randomRGB">Random RGB</label>
         <input type="radio" name="mode" value="grayscale"><label for="grayscale">Grayscale</label>
+        <input type="radio" name="mode" value="eraser"><label for="eraser">Eraser</label>
     </form>
     <label class="toggle">
         <input class="toggle-checkbox" type="checkbox" checked>
@@ -77,6 +78,8 @@
                     cell.style['background-color'] = randomRGB();
                 else if (selectedMode === 'grayscale')
                     cell.style['background-color'] = darken(getRGBvalues(cell.style.backgroundColor));
+                else if (selectedMode === 'eraser')
+                    cell.style['background-color'] = 'rgb(255,255,255)'; //white
                 else
                     cell.style['background-color'] = 'rgb(255,255,0)'; //yellow
             });
