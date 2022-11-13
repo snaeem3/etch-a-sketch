@@ -10,9 +10,13 @@
 <body>
     <h1>Etch-a-Sketch</h1>
     <button type="button" id="btn">Set Grid Size</button>
-    <div id="sketch-container">
-        
-    </div>
+    <div id="sketch-container"></div>
+    <form name="modeSelect">
+        <input type="radio" name="mode" value="standard" checked="checked"><label for="standard">Standard</label>
+        <input type="radio" name="mode" value="randomRGB"><label for="randomRGB">Random RGB</label>
+        <input type="radio" name="mode" value="grayscale"><label for="grayscale">Grayscale</label>
+    </form>
+
 </body>
 
 <script>
@@ -45,14 +49,18 @@
         setMouseOver(); 
     }
 
-    function setMouseOver() {
+    function setMouseOver(mode='standard') {
         const cells = document.querySelectorAll('.cell');
         cells.forEach((cell) => {
             cell.addEventListener('mouseover', () => {
-                // cell.setAttribute('style', 'background: yellow;');
-                // cell.style['background-color'] = randomRGB();
-                // console.log(cell.style.backgroundColor);
-                cell.style['background-color'] = darken(getRGBvalues(cell.style.backgroundColor));
+                let selectedMode = document.querySelector('input[name="mode"]:checked').value;
+                // console.log(name);
+                if (selectedMode === 'randomRGB')
+                    cell.style['background-color'] = randomRGB();
+                else if (selectedMode === 'grayscale')
+                    cell.style['background-color'] = darken(getRGBvalues(cell.style.backgroundColor));
+                else
+                    cell.style['background-color'] = 'yellow';
             });
         });
 
@@ -78,7 +86,7 @@
     function getRGBvalues(color) {
         // input: "rgb(xxx,xxx,xxx)"
         // output: 3 element array corresponding to r, g, and b values
-        
+
         color = color.slice(4,-1);
         // console.log(color);
         let rgb = color.split(',');
@@ -101,8 +109,14 @@
 
         return `rgb(${newR},${newG},${newB})`;
     }
-    darken(getRGBvalues(randomRGB()));
 
+    // const radios = document.querySelectorAll('input[type=radio]');
+    // radios.forEach((radio) => {
+    //     radio.addEventListener('change', () => {
+    //         console.log(radio.value);
+    //         // setMouseOver(radio.value);
+    //     });
+    // });
 
     createSquareGrid();
 </script>
