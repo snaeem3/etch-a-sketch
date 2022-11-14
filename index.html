@@ -10,23 +10,26 @@
 <body>
     <h1>Etch-a-Sketch</h1>
     <!-- <button type="button" id="btn">Set Grid Size</button> -->
-    <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="16" class="slider" id="grid-size">
-        <output></output>
+    <div class="main-content">
+        <div class="slide-container">
+            Grid Size
+            <input type="range" min="1" max="100" value="16" class="slider" id="grid-size">
+            <output></output>
+        </div>
+        <div id="sketch-container"></div>
+        <button type="button" id="clearBtn">Clear Grid</button>
+        <form name="modeSelect">
+            <input type="radio" name="mode" value="standard" checked="checked"><label for="standard">Standard</label>
+            <input type="radio" name="mode" value="randomRGB"><label for="randomRGB">Random RGB</label>
+            <input type="radio" name="mode" value="grayscale"><label for="grayscale">Grayscale</label>
+            <input type="radio" name="mode" value="eraser"><label for="eraser">Eraser</label>
+        </form>
+        <label class="toggle">
+            <input class="toggle-checkbox" type="checkbox" checked>
+            <div class="toggle-switch"></div>
+            <span class="toggle-label">Grid Lines</span>
+        </label>
     </div>
-    <div id="sketch-container"></div>
-    <button type="button" id="clearBtn">Clear Grid</button>
-    <form name="modeSelect">
-        <input type="radio" name="mode" value="standard" checked="checked"><label for="standard">Standard</label>
-        <input type="radio" name="mode" value="randomRGB"><label for="randomRGB">Random RGB</label>
-        <input type="radio" name="mode" value="grayscale"><label for="grayscale">Grayscale</label>
-        <input type="radio" name="mode" value="eraser"><label for="eraser">Eraser</label>
-    </form>
-    <label class="toggle">
-        <input class="toggle-checkbox" type="checkbox" checked>
-        <div class="toggle-switch"></div>
-        <span class="toggle-label">Grid Lines</span>
-    </label>
 
 </body>
 
@@ -103,6 +106,7 @@
     //     deleteGrid();
     //     createSquareGrid(size);
     // });
+    //------------------------------------------
 
     const clearBtn = document.querySelector('#clearBtn');
     clearBtn.addEventListener('click', () => {

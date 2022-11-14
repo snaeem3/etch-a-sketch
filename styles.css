@@ -3,23 +3,60 @@
     color: seashell;
 }
 
+
+h1 {
+    font-size: 48px;
+    margin: 0px;
+    padding: 8px;
+    border-bottom: thick solid white;
+    background: purple;
+    text-align: center;
+}
+
 body {
     font-family: -apple-system, ".SFNSText-Regular", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.slide-container {
+    display: flex;
+    gap: 16px;
+    padding: 8px;
+    margin: 8px;
 }
 
 #sketch-container {
     display: grid;
     justify-items: center;
-    width: 800px;
+    width: 700px;
     background: white;
+    border: medium solid red;
 }
 
 #sketch-container > div{
     background: rgb(233, 233, 233);
 }
 
-.cell-over {
-    background: yellow;
+button {
+    text-align: center;
+    font-size: 24px;
+    margin: 5px;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 3px solid white;
+    border-radius: 16px;
+    width: 200px;
+}
+
+form {
+    margin: 5px;
 }
 
 .switch {
@@ -71,11 +108,11 @@ body {
 .toggle-checkbox:checked + .toggle-switch {
     background: #56c080;
 }
-  .toggle-checkbox:checked + .toggle-switch:before {
+.toggle-checkbox:checked + .toggle-switch:before {
     left: 30px;
 }
   
-  .toggle-checkbox {
+.toggle-checkbox {
     position: absolute;
     visibility: hidden;
 }
@@ -140,3 +177,4 @@ body {
   position: relative;
   top: 2px;
 }
+
