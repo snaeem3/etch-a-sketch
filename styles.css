@@ -23,8 +23,15 @@ body {
     align-self: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
 }
+
+.top-controls,
+.bottom-controls {
+  display: flex;
+  justify-content: space-between;
+}
+
 .slide-container {
     display: flex;
     gap: 16px;
@@ -55,10 +62,6 @@ button {
     width: 200px;
 }
 
-form {
-    margin: 5px;
-}
-
 .switch {
     position: relative;
     display: inline-block;
@@ -75,6 +78,8 @@ form {
 .toggle {
     cursor: pointer;
     display: inline-block;
+    padding: 8px;
+    margin 8px;
 }
 
 .toggle-switch {
@@ -178,3 +183,13 @@ body {
   top: 2px;
 }
 
+.mode-select {
+  /* display: flex; */
+  border: solid white;
+  height: max-content;
+  padding: 8px;
+  border-radius: 16px;
+  align-items: center;
+  text-align: center;
+  margin: 5px;
+}

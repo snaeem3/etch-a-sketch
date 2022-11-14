@@ -11,24 +11,31 @@
     <h1>Etch-a-Sketch</h1>
     <!-- <button type="button" id="btn">Set Grid Size</button> -->
     <div class="main-content">
-        <div class="slide-container">
-            Grid Size
-            <input type="range" min="1" max="100" value="16" class="slider" id="grid-size">
-            <output></output>
+        <div class="top-controls">
+            <div class="slide-container">
+                Grid Size
+                <input type="range" min="1" max="100" value="16" class="slider" id="grid-size">
+                <output></output>
+            </div>
+            <label class="toggle">
+                <input class="toggle-checkbox" type="checkbox" checked>
+                <div class="toggle-switch"></div>
+                <span class="toggle-label">Grid Lines</span>
+            </label>
         </div>
-        <div id="sketch-container"></div>
-        <button type="button" id="clearBtn">Clear Grid</button>
-        <form name="modeSelect">
-            <input type="radio" name="mode" value="standard" checked="checked"><label for="standard">Standard</label>
-            <input type="radio" name="mode" value="randomRGB"><label for="randomRGB">Random RGB</label>
-            <input type="radio" name="mode" value="grayscale"><label for="grayscale">Grayscale</label>
-            <input type="radio" name="mode" value="eraser"><label for="eraser">Eraser</label>
-        </form>
-        <label class="toggle">
-            <input class="toggle-checkbox" type="checkbox" checked>
-            <div class="toggle-switch"></div>
-            <span class="toggle-label">Grid Lines</span>
-        </label>
+        <div class="center-content">
+            <div id="sketch-container"></div>
+        </div>
+        <div class="bottom-controls">
+            <button type="button" id="clearBtn">Clear Grid</button>
+            <form name="modeSelect" class="mode-select">
+                <label for="standard"><input type="radio" name="mode" value="standard" checked="checked">Standard</label>
+                <label for="randomRGB"><input type="radio" name="mode" value="randomRGB">Random RGB</label>
+                <label for="grayscale"><input type="radio" name="mode" value="grayscale">Grayscale</label>
+                <label for="eraser"><input type="radio" name="mode" value="eraser">Eraser</label>
+            </form>
+        </div>
+        
     </div>
 
 </body>
@@ -68,7 +75,13 @@
             createCell(cellWidth);
         }
         container.setAttribute('style', `grid-template-columns: repeat(${size}, 1fr);`);
-        setMouseOver(); 
+        setMouseOver();
+        if (gridLinesCheckBox.checked) {
+            setOutlineOn();
+        }
+        else {
+            setOutlineOff();
+        }
     }
 
     function setMouseOver() {
