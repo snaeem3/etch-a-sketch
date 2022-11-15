@@ -29,7 +29,8 @@
         <div class="bottom-controls">
             <button type="button" id="clearBtn">Clear Grid</button>
             <form name="modeSelect" class="mode-select">
-                <label for="standard"><input type="radio" name="mode" value="standard" checked="checked">Standard</label>
+                <input type="color" id="color-choice" name="color-choice" value="#f6b73c">
+                <label for="standard"><input type="radio" name="mode" value="standard" checked="checked">Single Color</label>
                 <label for="randomRGB"><input type="radio" name="mode" value="randomRGB">Random RGB</label>
                 <label for="grayscale"><input type="radio" name="mode" value="grayscale">Grayscale</label>
                 <label for="eraser"><input type="radio" name="mode" value="eraser">Eraser</label>
@@ -97,7 +98,7 @@
                 else if (selectedMode === 'eraser')
                     cell.style['background-color'] = 'rgb(255,255,255)'; //white
                 else
-                    cell.style['background-color'] = 'rgb(255,255,0)'; //yellow
+                    cell.style['background-color'] = hexToRgb(document.querySelector('#color-choice').value); //yellow
             });
         });
 
@@ -170,6 +171,9 @@
         createSquareGrid(inputSize.value);
     });
 
+    // const colorChoice = document.querySelector('#color-choice');
+
+
     const gridLinesCheckBox = document.querySelector('.toggle-checkbox');
     gridLinesCheckBox.addEventListener('change', () => {
         if (gridLinesCheckBox.checked) {
@@ -192,6 +196,15 @@
         cells.forEach((cell) => {
             cell.style['outline'] = '0px';
         });
+    }
+
+    function hexToRgb(hex) {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        let r = parseInt(result[1], 16);
+        let g = parseInt(result[2], 16);
+        let b = parseInt(result[3], 16);
+        var RGBColor = "rgb(" + r + "," + g + "," + b + ")"; 
+        return RGBColor;
     }
 
     createSquareGrid();
